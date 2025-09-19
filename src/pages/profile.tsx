@@ -66,6 +66,7 @@ const UserPage: React.FC<UserPageProps> = ({
   fetchBrands,
   fetchCategories,
 }) => {
+  console.log(userRole);
   const router = useRouter();
   const { tab } = router.query;
 
@@ -383,13 +384,9 @@ const UserPage: React.FC<UserPageProps> = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   let userRole: string | null = null;
   try {
-    console.log('profile ssr')
     const cookiesHeader = context.req.headers.cookie ?? "";
     const cookies = parseCookie(cookiesHeader);
     const token = cookies["jwt"];
-
-    console.log(process.env.AUTH_JWT_SECRET);
-    console.log(token);
 
     if (token) {
       const decoded = jwt.verify(
@@ -403,8 +400,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
       userRole = decoded?.role ?? null;
     }
-
-    console.log(userRole);
 
     const fetchCategories = await getAllCategories();
     const fetchBrands = await getAllBrands();
