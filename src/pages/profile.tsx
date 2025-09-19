@@ -383,6 +383,7 @@ const UserPage: React.FC<UserPageProps> = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   let userRole: string | null = null;
   try {
+    console.log('profile ssr')
     const cookiesHeader = context.req.headers.cookie ?? "";
     const cookies = parseCookie(cookiesHeader);
     const token = cookies["jwt"];

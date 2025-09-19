@@ -133,6 +133,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // const locale = "en";
 
   try {
+    console.log('index ssr')
     const fetchCategories = await getAllCategories();
     const fetchBrands = await getAllBrands();
     const fetchPopProducts = await getRandomProducts(8);
