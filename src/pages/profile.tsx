@@ -387,9 +387,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const cookiesHeader = context.req.headers.cookie ?? "";
     const cookies = parseCookie(cookiesHeader);
     const token = cookies["jwt"];
-    console.log(cookiesHeader + 'cookiesHeader')
-    console.log(cookies + 'cookies')
-    console.log(token + 'token')
 
     if (token) {
       const decoded = jwt.verify(
@@ -403,6 +400,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
       userRole = decoded?.role ?? null;
     }
+    console.log(userRole)
 
     const fetchCategories = await getAllCategories();
     const fetchBrands = await getAllBrands();
