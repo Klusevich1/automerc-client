@@ -387,6 +387,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const cookies = parseCookie(cookiesHeader);
     const token = cookies["jwt"];
 
+    console.log(process.env.AUTH_JWT_SECRET);
+    console.log(token);
+
     if (token) {
       const decoded = jwt.verify(
         token,
@@ -399,6 +402,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
       userRole = decoded?.role ?? null;
     }
+
+    console.log(userRole);
 
     const fetchCategories = await getAllCategories();
     const fetchBrands = await getAllBrands();
