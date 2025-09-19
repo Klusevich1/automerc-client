@@ -398,8 +398,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         iat?: number;
         exp?: number;
       };
+      console.log(decoded)
       userRole = decoded?.role ?? null;
     }
+    console.log(token)
 
     const fetchCategories = await getAllCategories();
     const fetchBrands = await getAllBrands();
